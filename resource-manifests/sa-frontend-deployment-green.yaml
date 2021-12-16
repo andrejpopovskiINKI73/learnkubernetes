@@ -21,7 +21,7 @@ spec:
         app: sa-frontend #template for creating the pods, label matches the selector in the deployment
     spec:
       containers:
-        - image: rinormaloku/sentiment-analysis-frontend:green
+        - image: andrejpopovski123/sentiment-analysis-frontend:forminikube
           imagePullPolicy: Always #it will pull the container images on each redeployment
           name: sa-frontend
           ports:
