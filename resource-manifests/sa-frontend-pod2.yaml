@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: sa-frontend2
+  name: sa-frontend2 #name of the pod
   labels:
-    app: sa-frontend
+    app: sa-frontend #label, so the loadbalancer can recognize the pods
 spec:
   containers:
-    - image: rinormaloku/sentiment-analysis-frontend 
+    - image: andrejpopovski123/sentiment-analysis-frontend #image created with DOcker (on dockerhub aswell)
       name: sa-frontend
       ports:
         - containerPort: 80

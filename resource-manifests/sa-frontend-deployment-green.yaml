@@ -1,29 +1,28 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Deployment                                          # 1
 metadata:
-  name: sa-frontend
+  name: sa-frontend #common name of the deployment
   labels:
-    app: sa-frontend 
+    app: sa-frontend #label, used by loadbalancer
 spec:
   selector:
     matchLabels:
-      app:  sa-frontend
-    
-  replicas: 2
+      app: sa-frontend #selects the pods with matching label
+  replicas: 2                                             #number of pods within the deployment
   minReadySeconds: 15
   strategy:
-    type: RollingUpdate
+    type: RollingUpdate #deployment strategy, what is the best strategy, explore
     rollingUpdate: 
-      maxUnavailable: 1
-      maxSurge: 1
+      maxUnavailable: 1 #number of maximum unavailable pods while rolling the update
+      maxSurge: 1 #max number of pods added to the deployment, in this case max of 3 pods
   template:
     metadata:
       labels:
-        app: sa-frontend
+        app: sa-frontend #template for creating the pods, label matches the selector in the deployment
     spec:
       containers:
         - image: rinormaloku/sentiment-analysis-frontend:green
-          imagePullPolicy: Always
+          imagePullPolicy: Always #it will pull the container images on each redeployment
           name: sa-frontend
           ports:
             - containerPort: 80
